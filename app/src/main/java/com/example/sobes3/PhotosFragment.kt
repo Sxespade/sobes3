@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import com.example.sobes3.adapters.ListPicturesAdapter
 import com.example.sobes3.databinding.FragmentPhotosBinding
 import com.example.sobes3.retrofit.RetrofitImplementation
@@ -27,19 +29,8 @@ class PhotosFragment: Fragment(R.layout.fragment_photos) {
         super.onCreate(savedInstanceState)
 
         val retrofitImplementation = RetrofitImplementation()
-        retrofitImplementation.initRetorfit().loadPicture("1","100").enqueue(
-            object: Callback<List<Picture>>{
-                override fun onResponse(call: Call<List<Picture>>, response: Response<List<Picture>>) {
-                    Log.d("TAG1", "onResponse: " + response.body())
-                    val list = response.body() as List<Picture>
-                    binding.recycle.adapter = ListPicturesAdapter(list)
-                }
-
-                override fun onFailure(call: Call<List<Picture>>, t: Throwable) {
-                    Log.d("TAG1", "onFailure: " + t)
-                }
-            }
-        )
+        val apiService = retrofitImplementation.initRetorfit()
+            PicturePaging("1",apiService)
     }
 
 }
