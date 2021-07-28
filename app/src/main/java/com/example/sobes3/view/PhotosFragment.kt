@@ -25,6 +25,8 @@ class PhotosFragment: Fragment(R.layout.fragment_photos) {
 
         adapter = ListPicturesAdapter(PictureComparator)
 
+        binding.recycle.adapter = adapter
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel
                 .pictures
@@ -32,6 +34,8 @@ class PhotosFragment: Fragment(R.layout.fragment_photos) {
                     adapter.submitData(pagingData)
                 }
         }
+
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

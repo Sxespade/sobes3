@@ -8,9 +8,9 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("list")
-    fun loadPicture(
+    suspend fun loadPicture(
         @Query("page") page: String,
         @Query("limit") limit: String
-    ): Response<List<Picture>>
+    ): List<Picture>
 
 }

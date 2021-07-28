@@ -20,9 +20,9 @@ class PicturePaging(val s:String, val apiService: ApiService): PagingSource<Int,
         return try {
             val data = apiService.loadPicture(s,page.toString())
             LoadResult.Page(
-                data = data.body()!!,
+                data = data,
                 prevKey = if(page==1) null else page-1,
-                nextKey = if(data.body()?.isEmpty()!!)null else page+1
+                nextKey = if(data.isEmpty())null else page+1
             )
 
         } catch (e: Exception){

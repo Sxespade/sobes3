@@ -11,16 +11,15 @@ import com.example.sobes3.retrofit.ApiService
 import com.example.sobes3.retrofit.entity.Picture
 import kotlinx.coroutines.flow.Flow
 
-class PhotosViewModel(apiService: ApiService): BaseViewModel<AppState>() {
+class PhotosViewModel(private val apiService: ApiService): BaseViewModel<AppState>() {
     fun subscribe(): LiveData<AppState> = liveDataViewmodel
 
-    val pictures: Flow<PagingData<Picture>> = Pager(PagingConfig(pageSize = 5)) {
+    val pictures: Flow<PagingData<Picture>> = Pager(PagingConfig(pageSize = 20)) {
         PicturePaging("1",apiService)
     }.flow.cachedIn(viewModelCoroutineScope)
 
 
 
     override fun errorReturned(t: Throwable) {
-        TODO("Not yet implemented")
     }
 }
