@@ -17,6 +17,7 @@ class RetrofitImplementation {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
+
     }
 
 }

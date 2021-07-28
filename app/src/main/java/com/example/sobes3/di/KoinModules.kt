@@ -1,7 +1,9 @@
 package com.example.myapplication.di
 
 import com.example.sobes3.PhotosFragment
+import com.example.sobes3.PhotosViewModel
 import com.example.sobes3.retrofit.RetrofitImplementation
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 /**
@@ -11,6 +13,11 @@ import org.koin.dsl.module
  */
 val appModule = module {
     single { RetrofitImplementation().initRetorfit() }
+}
+
+val photosFragmentModuule = module {
+    single { RetrofitImplementation().initRetorfit() }
+    viewModel { PhotosViewModel(get()) }
 }
 
 
