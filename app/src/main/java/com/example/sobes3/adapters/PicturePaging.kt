@@ -1,4 +1,4 @@
-package com.example.sobes3
+package com.example.sobes3.adapters
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

@@ -1,7 +1,6 @@
 package com.example.myapplication.di
 
-import com.example.sobes3.PhotosFragment
-import com.example.sobes3.PhotosViewModel
+import com.example.sobes3.viewmodel.PhotosViewModel
 import com.example.sobes3.retrofit.RetrofitImplementation
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

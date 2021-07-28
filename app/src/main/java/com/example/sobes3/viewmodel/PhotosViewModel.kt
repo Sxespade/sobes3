@@ -1,14 +1,13 @@
-package com.example.sobes3
+package com.example.sobes3.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.data.state.AppState
+import com.example.sobes3.adapters.PicturePaging
 import com.example.sobes3.retrofit.ApiService
-import com.example.sobes3.retrofit.RetrofitImplementation
 import com.example.sobes3.retrofit.entity.Picture
 import kotlinx.coroutines.flow.Flow
 

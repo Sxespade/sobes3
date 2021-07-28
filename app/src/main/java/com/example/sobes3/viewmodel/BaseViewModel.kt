@@ -1,4 +1,4 @@
-package com.example.sobes3
+package com.example.sobes3.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
