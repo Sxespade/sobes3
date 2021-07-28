@@ -14,8 +14,8 @@ import kotlinx.coroutines.flow.Flow
 class PhotosViewModel(private val apiService: ApiService): BaseViewModel<AppState>() {
     fun subscribe(): LiveData<AppState> = liveDataViewmodel
 
-    val pictures: Flow<PagingData<Picture>> = Pager(PagingConfig(pageSize = 20)) {
-        PicturePaging("1",apiService)
+    val pictures: Flow<PagingData<Picture>> = Pager(PagingConfig(pageSize = 1)) {
+        PicturePaging(apiService)
     }.flow.cachedIn(viewModelCoroutineScope)
 
 

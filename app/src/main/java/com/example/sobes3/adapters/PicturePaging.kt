@@ -4,29 +4,44 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.sobes3.retrofit.ApiService
 import com.example.sobes3.retrofit.entity.Picture
-import java.lang.Exception
+import retrofit2.HttpException
+import java.io.IOException
 
-class PicturePaging(val s:String, val apiService: ApiService): PagingSource<Int, Picture>() {
-    override fun getRefreshKey(state: PagingState<Int, Picture>): Int? {
-       return state.anchorPosition?.let {
-            val anchorPage = state.closestPageToPosition(it)
-            anchorPage?.prevKey?.plus(1)?:anchorPage?.nextKey?.minus(1)
+class PicturePaging(
+    val backend: ApiService
+) : PagingSource<Int, Picture>() {
+    override suspend fun load(
+        params: LoadParams<Int>
+    ): LoadResult<Int, Picture> {
+        try {
+            // Start refresh at page 1 if undefined.
+            val nextPageNumber = params.key ?: 1
+            val response = backend.loadPicture(nextPageNumber.toString(),"100")
+            return LoadResult.Page(
+                data = response,
+                prevKey = null, // Only paging forward.
+                nextKey = nextPageNumber+1
+            )
+        } catch (e: IOException) {
+            // IOException for network failures.
+            return LoadResult.Error(e)
+        } catch (e: HttpException) {
+            // HttpException for any non-2xx HTTP status codes.
+            return LoadResult.Error(e)
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Picture> {
-        val page = params.key?:1
-
-        return try {
-            val data = apiService.loadPicture(s,page.toString())
-            LoadResult.Page(
-                data = data,
-                prevKey = if(page==1) null else page-1,
-                nextKey = if(data.isEmpty())null else page+1
-            )
-
-        } catch (e: Exception){
-            LoadResult.Error(e)
+    override fun getRefreshKey(state: PagingState<Int, Picture>): Int? {
+        // Try to find the page key of the closest page to anchorPosition, from
+        // either the prevKey or the nextKey, but you need to handle nullability
+        // here:
+        //  * prevKey == null -> anchorPage is the first page.
+        //  * nextKey == null -> anchorPage is the last page.
+        //  * both prevKey and nextKey null -> anchorPage is the initial page, so
+        //    just return null.
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
 }
