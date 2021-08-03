@@ -3,6 +3,7 @@ package com.example.sobes3
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.sobes3.view.AutorizationFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +23,9 @@ class MainActivity : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
                 R.id.autorization -> {
-
+                    supportFragmentManager.beginTransaction().replace(R.id.container,
+                        AutorizationFragment()
+                    ).commit()
                     return@setOnItemSelectedListener true
                 }
             }

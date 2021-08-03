@@ -15,7 +15,6 @@ class MainViewHolder(
         with(binding) {
             glideImageLoader.loadImage(picture?.downloadUrl,ivImage)
             ivAuthor.text = picture?.author
-            ivId.text = picture?.id
         }
     }
 }

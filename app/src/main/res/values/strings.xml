@@ -2,4 +2,7 @@
     <string name="app_name">Sobes3</string>
     <string name="pictures">Картинки</string>
     <string name="autorization">Авторизация</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="enter">Войти</string>
 </resources>
