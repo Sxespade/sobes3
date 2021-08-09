@@ -4,27 +4,35 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class Picture (
+    @SerializedName("adult")
+    @Expose
+    var adult: Boolean? = null,
+
+    @SerializedName("backdrop_path")
+    @Expose
+    var backdropPath: String? = null,
+
     @SerializedName("id")
     @Expose
-    var id: String? = null,
+    var id: Int? = null,
 
-    @SerializedName("author")
+    @SerializedName("name")
     @Expose
-    var author: String? = null,
+    var name: String? = null,
 
-    @SerializedName("width")
+    @SerializedName("original_language")
     @Expose
-    var width: Int? = null,
+    var originalLanguage: String? = null,
 
-    @SerializedName("height")
+    @SerializedName("original_name")
     @Expose
-    var height: Int? = null,
+    var originalName: String? = null,
 
-    @SerializedName("url")
+    @SerializedName("overview")
     @Expose
-    var url: String? = null,
+    var overview: String? = null,
 
-    @SerializedName("download_url")
+    @SerializedName("poster_path")
     @Expose
-    var downloadUrl: String? = null
+    var posterPath: String? = null
 )

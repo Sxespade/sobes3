@@ -17,7 +17,7 @@ class RetrofitImplementation {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 
         return Retrofit.Builder()
-            .baseUrl("https://picsum.photos/v2/")
+            .baseUrl("http://api.themoviedb.org/")
             .client(
                 OkHttpClient.Builder().addInterceptor(interceptor)
                     .build()

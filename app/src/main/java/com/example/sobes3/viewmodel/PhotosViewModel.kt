@@ -8,6 +8,7 @@ import androidx.paging.cachedIn
 import com.example.myapplication.data.state.AppState
 import com.example.sobes3.adapters.PicturePaging
 import com.example.sobes3.retrofit.ApiService
+import com.example.sobes3.retrofit.entity.Example
 import com.example.sobes3.retrofit.entity.Picture
 import kotlinx.coroutines.flow.Flow
 

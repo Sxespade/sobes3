@@ -9,6 +9,6 @@ object PictureComparator : DiffUtil.ItemCallback<Picture>() {
     }
 
     override fun areContentsTheSame(oldItem: Picture, newItem: Picture): Boolean {
-        return oldItem.id == newItem.id && oldItem.downloadUrl == newItem.downloadUrl
+        return oldItem.id == newItem.id && oldItem.posterPath == newItem.posterPath
     }
 }

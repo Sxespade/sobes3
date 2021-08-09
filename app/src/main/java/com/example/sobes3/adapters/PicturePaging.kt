@@ -16,9 +16,9 @@ class PicturePaging(
         try {
             // Start refresh at page 1 if undefined.
             val nextPageNumber = params.key ?: 1
-            val response = backend.loadPicture(nextPageNumber.toString(),"100")
+            val response = backend.loadPicture("f9a3365855819e4489ee8048d1ff8761","films").results
             return LoadResult.Page(
-                data = response,
+                data = response!!,
                 prevKey = null, // Only paging forward.
                 nextKey = nextPageNumber+1
             )

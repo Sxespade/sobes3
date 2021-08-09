@@ -13,8 +13,8 @@ class MainViewHolder(
 
     fun bind(picture: Picture?) {
         with(binding) {
-            glideImageLoader.loadImage(picture?.downloadUrl,ivImage)
-            ivAuthor.text = picture?.author
+                glideImageLoader.loadImage(picture?.posterPath,ivImage)
+                ivAuthor.text = picture?.name
         }
     }
 }
